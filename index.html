@@ -10,8 +10,23 @@
 </head>
 <body>
   <div class="container">
+    <nav>
+      <h1>Library 📚</h1>
+    </nav>
+    <div class="cards">
+      <div class="card">
+          <input type="text" placeholder="Title" id="title" name="title" required>
+          <input type="text" placeholder="Author" id="author" name="author" required>
+          <input type="number" placeholder="Pages" id="pages" name="pages" required>
 
-    <button id="addBook"></button>
+          <div>
+          <input type="checkbox" name="read" id="read">
+          <label for="read">I've read</label>
+          </div>
+
+          <button id="addBook">Add Book</button>
+      </div>
+    </div>
   </div>  
 
   <script src="./assets/js/script.js"></script>
