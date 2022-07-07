@@ -11,7 +11,6 @@ const titleInput = document.querySelector('#title');
 const pagesInput = document.querySelector('#pages');
 
 const cardsDiv = document.querySelector('.cards');
-const readButtons = document.querySelectorAll('.readButton');
 
 addBookButton.addEventListener('click', 
 showForm);
@@ -23,19 +22,15 @@ inputs.forEach(input => {
   input.addEventListener('focus', setValidity);
 });
 
-readButtons.forEach(button => {
-  button.addEventListener('click', toggleRead);
-});
-
 let bookLibrary = [];
 
 function Book(title, author, pages, read) {
-  this.title = '<h2>' + title + "</h2>";
+  this.title = title;
 
-  this.author = '<p>' + author + "</p>";
-  this.pages = '<p>' + pages + '</p>';
+  this.author = 'by ' + author;
+  this.pages = pages + " pages";
 
-  this.read = '<button>' + ((read) ? 'Read' : 'Not Read') + "</button>";
+  this.read = ((read) ? 'Read' : 'Not Read');
 
   this.added = false;
 }
@@ -97,9 +92,41 @@ function checkBooks() {
 }
 
 function addBookToDOM(book) {
-  console.log(book);
+  let card = document.createElement('div');
+  card.classList.add('card');
+
+  let titleElement = document.createElement('h2');
+  let authorElement = document.createElement('p');
+  let pagesElement = document.createElement('p');
+  let readElement = document.createElement('button');
+
+  titleElement.textContent = book.title;
+  authorElement.textContent = book.author;
+  pagesElement.textContent = book.pages;
+  readElement.textContent = book.read;
+
+  readElement.addEventListener('click', toggleRead);
+
+  readElement.classList.add('readButton');
+  if (book.read == 'Read') {
+    readElement.classList.add('read');
+  }
+
+  card.appendChild(titleElement);
+  card.appendChild(authorElement);
+  card.appendChild(pagesElement);
+  card.appendChild(readElement);
+
+  cardsDiv.appendChild(card);
 }
 
 function toggleRead() {
   this.classList.toggle('read');
+
+  if (this.textContent == 'Read') {
+    this.textContent = 'Not Read';
+  }
+  else {
+    this.textContent = 'Read';
+  }
 }
