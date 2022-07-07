@@ -1,19 +1,28 @@
 const addBookButton = document.querySelector('#addBook');
-const cardsDiv = document.querySelector('.cards');
 
 const form = document.querySelector('.form-container');
 const cancelButton = document.querySelector('#cancel');
+
+let inputs = document.querySelectorAll("input[type='text'], input[type='number']");
 
 const readInput = document.querySelector('#read');
 const authorInput = document.querySelector('#author');
 const titleInput = document.querySelector('#title');
 const pagesInput = document.querySelector('#pages');
 
+const cardsDiv = document.querySelector('.cards');
+
+let bookLibrary = [];
+
 addBookButton.addEventListener('click', 
 showForm);
 cancelButton.addEventListener('click', cancelForm);
 
-let bookLibrary = [];
+inputs.forEach(input => {
+  input.addEventListener('click', setValidity);
+  input.addEventListener('hover', setValidity);
+  input.addEventListener('focus', setValidity);
+});
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -31,6 +40,12 @@ function addBookToLibrary () {
   bookLibrary.push(new Book(title, author, pages, read));
 
   clearInputs();
+
+  inputs.forEach(input => {
+    unsetValidity(input);
+  });
+
+  return false;
 }
 
 function clearInputs() {
@@ -44,5 +59,17 @@ function showForm() {
 }
 function cancelForm() {
   form.classList.remove('visible');
-  clearInputs
+
+  clearInputs();
+
+  inputs.forEach(input => {
+    unsetValidity(input)
+  });
+}
+
+function setValidity() {
+  this.classList.add('validCheck');
+}
+function unsetValidity(input) {
+  input.classList.remove('validCheck');
 }

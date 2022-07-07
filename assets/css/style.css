@@ -3,6 +3,8 @@
 :root {
   --white-custom: #fbfbfd;
   --black-custom: #18181b;
+  --green-custom: #15f366;
+  --form-padding-side: 40px;
 }
 
 * {
@@ -36,7 +38,8 @@ nav h1 {
   font-size: 2.4rem;
   text-shadow: 1px 1px 1px rgba(32, 37, 32, 0.726);
 }
-.addBook {
+
+.addBookDiv {
   margin: auto;
   width: 95%;
   max-width: 100%;
@@ -44,6 +47,15 @@ nav h1 {
   display: grid;
   align-items: center;
   justify-content: center;
+}
+#addBook {
+  background-color: inherit;
+  border: none;
+
+  color: #409158;
+  text-shadow: 2px 2px 1px rgba(72, 218, 53, 0.479);
+  font-weight: bold;
+  font-size: 1.95rem;
 }
 
 .form-container {
@@ -53,8 +65,10 @@ nav h1 {
   
   width: 100vw;
   height: 100vh;
-  z-index: 9;
-  background-color: rgba(0, 0, 0, 0.466);
+  z-index: 100;
+  
+  background-color: rgba(5, 10, 5, 0.61);
+
   display: none;
   align-items: center; 
 }
@@ -63,8 +77,14 @@ form {
   border-radius: 5px;
 
   display: grid;
-  padding: 20px;
-  gap: 17px;
+  padding: 40px var(--form-padding-side);
+}
+form > * {
+  margin: 9px;
+}
+form h2 {
+  font-size: 1.6rem;
+  padding: 0 0 3px;
 }
 form input {
   background-color: var(--white-custom);
@@ -74,37 +94,79 @@ form input {
   border-bottom: 1px solid var(--black-custom);
   transition: .7s;
 }
-form input:invalid:focus,
-form input:invalid:hover {
+.validCheck:invalid {
   border-bottom-color: #ef4444;
 }
-form input:valid:focus,
-form input:valid:hover {
-  border-bottom-color: #22c55e;
+.validCheck:valid {
+  border-bottom-color: var(--green-custom);
 }
-form .checkbox > * {
+form .checkboxdiv {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+form .checkboxdiv > * {
   cursor: pointer;
+}
+form .checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  
+  position: relative;
+  bottom: 1px;
+
+  padding: 10px;
+
+  background-color: var(--white-custom);
+  border: 1px solid var(--black-custom);
+  border-radius: 2px;
+  transition: 0s;
+}
+form .checkbox:checked {
+  padding: 2px 5.5px 4px;
+  background-color: var(--green-custom);
+}
+form .checkbox:checked::after { 
+  display: block;
+}
+form .checkbox::after {
+  content: "";
+  display: none;
+
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 form ::placeholder,
 form label,
 form input,
-button {
-  font-size: 1.25rem;
+form button {
+  font-size: 1.35rem;
+}
+form button {
+  background-color: var(--green-custom);
+  padding: 8px;
+
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  transition: .5s;
+}
+form #cancel {
+  background-color: #ef4444;
+}
+form button:hover {
+  transform: scale(1.05, 1.1);
+  color: var(--white-custom);
 }
 .visible {
   display: grid;
   align-items: center;
   justify-content: center;
-}
-
-#addBook {
-  background-color: inherit;
-  border: none;
-
-  color: #409158;
-  text-shadow: 2px 2px 2px rgba(72, 218, 53, 0.479);
-  font-weight: bold;
-  font-size: 1.9rem;
 }
 
 .cards {
@@ -132,7 +194,6 @@ button {
   cursor: pointer;
 }
 
-
 @media screen and (max-width:670px) {
   nav h1 {
     font-size: 2.3rem;
@@ -148,7 +209,11 @@ button {
   form {
     max-width: 77vw;
   }
-  form input {
-    max-width: calc(77vw - 40px);
+  form > * {
+    margin-left: 0;
+  }
+  form input,
+  form button {
+    max-width: calc(77vw - calc(var(--form-padding-side) * 2));
   }
 }
