@@ -35,7 +35,7 @@ nav {
   margin-bottom: 20px;
 }
 nav h1 {
-  font-size: 2.4rem;
+  font-size: 2.45rem;
   text-shadow: 1px 1px 1px rgba(32, 37, 32, 0.726);
 }
 
@@ -49,13 +49,14 @@ nav h1 {
   justify-content: center;
 }
 #addBook {
+  padding: 10px 0 0;
   background-color: inherit;
   border: none;
 
   color: #409158;
   text-shadow: 2px 2px 1px rgba(72, 218, 53, 0.479);
   font-weight: bold;
-  font-size: 1.95rem;
+  font-size: 2rem;
 }
 
 .form-container {
@@ -159,8 +160,9 @@ form button {
 form #cancel {
   background-color: #ef4444;
 }
-form button:hover {
-  transform: scale(1.05, 1.1);
+form button:hover,
+.cards .card button:hover {
+  transform: scale(1.04, 1.1);
   color: var(--white-custom);
 }
 .visible {
@@ -171,17 +173,17 @@ form button:hover {
 
 .cards {
   margin: auto;
-  width: 95%;
+  padding: 25px 0 40px;
+  width: 94%;
   max-width: 100%;
 
   display: grid;
-  gap: 22px;
+  gap: 30px;
   grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
   grid-auto-rows: 1fr;
 }
-
 .cards .card {
-  padding: 20px;
+  padding: 25px 20px;
 
   background-color: var(--white-custom);
   border-radius: 5px;
@@ -189,14 +191,44 @@ form button:hover {
   display: grid;
   gap: 17px;
 }
+.cards .card > * {
+  word-break: break-all; 
+}
+.cards .card h2 {
+  font-size: 1.64rem;
+}
+.cards .card h2 + p {
+  /* First p (author) style */
+  font-style: italic;
+}
+.cards .card p {
+  font-size: 1.35rem;
+}
+.cards .card button {
+  padding: 12px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  align-self: center;
+
+  border: none;
+  border-radius: 4px;
+
+  background-color: #ef4444;
+  color: var(--black-custom);
+
+  transition: .5s;
+}
+.cards .card button.read {
+  background-color: var(--green-custom);
+}
 
 button {
   cursor: pointer;
 }
 
-@media screen and (max-width:670px) {
+@media screen and (max-width:700px) {
   nav h1 {
-    font-size: 2.3rem;
+    font-size: 2.35rem;
   }
   .cards {
     width: 77%;

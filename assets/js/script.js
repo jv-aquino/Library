@@ -11,8 +11,7 @@ const titleInput = document.querySelector('#title');
 const pagesInput = document.querySelector('#pages');
 
 const cardsDiv = document.querySelector('.cards');
-
-let bookLibrary = [];
+const readButtons = document.querySelectorAll('.readButton');
 
 addBookButton.addEventListener('click', 
 showForm);
@@ -20,15 +19,25 @@ cancelButton.addEventListener('click', cancelForm);
 
 inputs.forEach(input => {
   input.addEventListener('click', setValidity);
-  input.addEventListener('hover', setValidity);
+  input.addEventListener('mouseover', setValidity);
   input.addEventListener('focus', setValidity);
 });
 
+readButtons.forEach(button => {
+  button.addEventListener('click', toggleRead);
+});
+
+let bookLibrary = [];
+
 function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+  this.title = '<h2>' + title + "</h2>";
+
+  this.author = '<p>' + author + "</p>";
+  this.pages = '<p>' + pages + '</p>';
+
+  this.read = '<button>' + ((read) ? 'Read' : 'Not Read') + "</button>";
+
+  this.added = false;
 }
 
 function addBookToLibrary () {
@@ -44,6 +53,10 @@ function addBookToLibrary () {
   inputs.forEach(input => {
     unsetValidity(input);
   });
+
+  cancelForm();
+
+  checkBooks();
 
   return false;
 }
@@ -72,4 +85,21 @@ function setValidity() {
 }
 function unsetValidity(input) {
   input.classList.remove('validCheck');
+}
+
+function checkBooks() {
+  bookLibrary.forEach(book => {
+    if (!book.added) {
+      book.added = true;
+      addBookToDOM(book);
+    }
+  });
+}
+
+function addBookToDOM(book) {
+  console.log(book);
+}
+
+function toggleRead() {
+  this.classList.toggle('read');
 }
