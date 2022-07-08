@@ -186,23 +186,23 @@ form button:hover,
   grid-auto-rows: 1fr;
 }
 .cards .card {
-  padding: 25px 20px;
+  padding: 28px 25px;
 
   background-color: var(--white-custom);
   border-radius: 5px;
 
   display: grid;
-  gap: 19px;
+  gap: 16px;
 }
 .cards .card > * {
   word-break: break-all; 
 }
 .cards .card h2 {
-  font-size: 1.65rem;
+  font-size: 1.7rem;
 }
 .cards .card h2 + p {
   /* First p (author) style */
-  margin-top: -4px;
+  margin-top: -3px;
   font-style: italic;
 }
 .cards .card p {
@@ -224,6 +224,13 @@ form button:hover,
 }
 .cards .card button.read {
   background-color: var(--green-custom);
+}
+.cards .card button.remove {
+  background-color: var(--black-custom);
+  color: var(--white-custom);
+}
+.cards .card button.remove:hover {
+  color: #ef4444;
 }
 
 button {

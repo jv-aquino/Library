@@ -95,6 +95,16 @@ function addBookToDOM(book) {
   let card = document.createElement('div');
   card.classList.add('card');
 
+  card.dataset.attribute = bookLibrary.indexOf(book);
+
+  let removeButton = document.createElement('button');
+  removeButton.textContent = 'Remove Book';
+  removeButton.classList.add('remove');
+  
+  removeButton.addEventListener('click', () => {
+    removeBook(book);
+  });
+
   let titleElement = document.createElement('h2');
   let authorElement = document.createElement('p');
   let pagesElement = document.createElement('p');
@@ -105,28 +115,39 @@ function addBookToDOM(book) {
   pagesElement.textContent = book.pages;
   readElement.textContent = book.read;
 
-  readElement.addEventListener('click', toggleRead);
+  readElement.addEventListener('click', (e) => {
+    let element = e.target;
+    toggleRead(element, book);
+  });
 
   readElement.classList.add('readButton');
   if (book.read == 'Read') {
     readElement.classList.add('read');
+  }
+  else {
+    readElement.classList.remove('read');
   }
 
   card.appendChild(titleElement);
   card.appendChild(authorElement);
   card.appendChild(pagesElement);
   card.appendChild(readElement);
+  card.appendChild(removeButton);
 
   cardsDiv.appendChild(card);
 }
 
-function toggleRead() {
-  this.classList.toggle('read');
+function toggleRead(element, book) {
+  element.classList.toggle('read');
 
-  if (this.textContent == 'Read') {
-    this.textContent = 'Not Read';
+  if (element.textContent == 'Read') {
+    book.read = element.textContent = 'Not Read';
   }
   else {
-    this.textContent = 'Read';
+    book.read = element.textContent = 'Read';
   }
+}
+
+function removeBook(book) {
+  
 }
