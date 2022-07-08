@@ -1,2 +1,7 @@
-# Library
-Library App made with JavaScript objects and constructors, for the Odin Project curriculum.
+# Library 📚
+Store your books with this amazing app!<br>
+
+### Tech Stack:
+- JS (objects and constructors)
+- CSS
+- HTML
