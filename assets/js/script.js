@@ -95,8 +95,6 @@ function addBookToDOM(book) {
   let card = document.createElement('div');
   card.classList.add('card');
 
-  card.dataset.attribute = bookLibrary.indexOf(book);
-
   let removeButton = document.createElement('button');
   removeButton.textContent = 'Remove Book';
   removeButton.classList.add('remove');
@@ -149,5 +147,9 @@ function toggleRead(element, book) {
 }
 
 function removeBook(book) {
-  
+  let index = bookLibrary.indexOf(book);
+
+  cardsDiv.removeChild(cardsDiv.children[index]);
+
+  bookLibrary.splice(index, 1);
 }
