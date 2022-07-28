@@ -24,15 +24,17 @@ inputs.forEach(input => {
 
 let bookLibrary = [];
 
-function Book(title, author, pages, read) {
-  this.title = title;
-
-  this.author = 'by ' + author;
-  this.pages = pages + " pages";
-
-  this.read = ((read) ? 'Read' : 'Not Read');
-
-  this.added = false;
+class Book {
+  constructor (title, author, pages, read) {
+    this.title = title;
+    
+    this.author = 'by ' + author;
+    this.pages = pages + " pages";
+    
+    this.read = ((read) ? 'Read' : 'Not Read');
+    
+    this.added = false;
+  }
 }
 
 function addBookToLibrary () {
